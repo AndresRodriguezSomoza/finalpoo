@@ -14,11 +14,11 @@ public class LibroControlador extends HttpServlet {
     private CLibro clibro = new CLibro();
     private final String pagListar = "/vista/listar.jsp";
     private final String pagNuevo = "/vista/nuevolibro.jsp";
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response); 
+        processRequest(request, response);
     }
 
     @Override
@@ -67,7 +67,10 @@ public class LibroControlador extends HttpServlet {
         int result = clibro.registrar(obj);
 
         if (result > 0) {
-            response.sendRedirect(pagListar);
+            response.sendRedirect("LibroControlador?accion=listar");
+        } else {
+            request.setAttribute("libros", obj);
+            request.getRequestDispatcher(pagNuevo).forward(request, response);
         }
     }
 
