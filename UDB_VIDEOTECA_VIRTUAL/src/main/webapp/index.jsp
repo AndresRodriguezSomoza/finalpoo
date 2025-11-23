@@ -1,6 +1,10 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="config.conexionmysql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
     <head>

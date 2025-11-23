@@ -1,5 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,9 +18,13 @@
                 <div class="card-body">
                     <h3>Libros UDB</h3>
                     <hr />
+
                     <a href="LibroControlador?accion=nuevolibro" class="btn btn-success btn-sm">
                         <i class="fa fa-plus-circle"></i> Nuevo libro
                     </a>
+
+                    <jsp:include page="../components/Mensaje.jsp" />
+
                     <table class="table table-bordered table-striped mt-2">
                         <thead>
                             <tr>
@@ -32,6 +40,7 @@
                                 <th>Categoria</th>
                                 <th>Idioma</th>
                                 <th>Formato</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +58,17 @@
                                     <td>${item.categoria}</td>
                                     <td>${item.idioma}</td>
                                     <td>${item.formato}</td>
+                                    <td>
+                                        <a href="LibroControlador?accion=editar&id=${item.id}" 
+                                           class="btn btn-info btn-sm">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="LibroControlador?accion=eliminar&id=${item.id}" 
+                                           onclick="return confirm('Estas seguro que desea eliminar el empleado con id ${item.id}')"
+                                           class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             <c:if test="${libros.size() == 0}">

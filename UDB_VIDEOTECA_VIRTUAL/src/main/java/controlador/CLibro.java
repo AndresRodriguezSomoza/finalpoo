@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CLibro {
-
+    
     private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-
+    
     public ArrayList<EntidadLibro> ListarTodos() {
         ArrayList<EntidadLibro> lista = new ArrayList<>();
-
+        
         try {
             conn = conexionmysql.obtenerConexion();
             String sentencia = "select * from libro";
             ps = conn.prepareStatement(sentencia);
             rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 EntidadLibro objEntidad = new EntidadLibro();
                 objEntidad.setId(rs.getInt("id"));
@@ -53,25 +53,25 @@ public class CLibro {
                     ps.close();
                 }
             } catch (Exception ex) {
-
+                
             }
         }
-
+        
         return lista;
     }
-
+    
     public int registrar(EntidadLibro obj) {
         int result = 0;
-
+        
         try {
             conn = conexionmysql.obtenerConexion();
             String sentencia = "INSERT INTO libro(cdidentificacion,stock,isbn,titulo,autor,editorial,numpag,year,categoria,idioma,formato) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             Random r = new Random();
             int max = 99999, min = 10000;
-
+            
             int number = r.nextInt(max - min + 1) + min;
-
+            
             String codLIB = "LIB" + number;
             ps = conn.prepareStatement(sentencia);
             ps.setString(1, codLIB);
@@ -98,10 +98,124 @@ public class CLibro {
                     ps.close();
                 }
             } catch (Exception ex) {
-
+                
             }
         }
-
+        
         return result;
+    }
+    
+    public int eliminar(int id) {
+        int result = 0;
+        
+        try {
+            conn = conexionmysql.obtenerConexion();
+            String sentencia = "DELETE FROM libro WHERE id = ?";
+            
+            ps = conn.prepareStatement(sentencia);
+            ps.setInt(1, id);
+            result = ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                
+            }
+        }
+        
+        return result;
+    }
+    
+    public int editar(EntidadLibro obj) {
+        int result = 0;
+        
+        try {
+            conn = conexionmysql.obtenerConexion();
+            String sentencia = "UPDATE libro SET stock=?, isbn=?, titulo=?, autor=?, editorial=?, numpag=?, year=?, categoria=?, idioma=?, formato=? "
+                    + "WHERE id=?";
+            
+            ps = conn.prepareStatement(sentencia);
+            ps.setInt(1, obj.getStock());
+            ps.setString(2, obj.getIsbn());
+            ps.setString(3, obj.getTitulo());
+            ps.setString(4, obj.getAutor());
+            ps.setString(5, obj.getEditorial());
+            ps.setInt(6, obj.getNumpag());
+            ps.setString(7, obj.getYear());
+            ps.setString(8, obj.getCategoria());
+            ps.setString(9, obj.getIdioma());
+            ps.setString(10, obj.getFormato());
+            ps.setInt(11, obj.getId());
+            
+            result = ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                
+            }
+        }
+        
+        return result;
+    }
+    
+    public EntidadLibro buscarPorId(int id) {
+        EntidadLibro objEntidad = null;
+        
+        try {
+            conn = conexionmysql.obtenerConexion();
+            String sentencia = "select * from libro where id = ?";
+            ps = conn.prepareStatement(sentencia);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                objEntidad = new EntidadLibro();
+                objEntidad.setId(rs.getInt("id"));
+                objEntidad.setCdidentificacion(rs.getString("cdidentificacion"));
+                objEntidad.setStock(rs.getInt("stock"));
+                objEntidad.setIsbn(rs.getString("isbn"));
+                objEntidad.setTitulo(rs.getString("titulo"));
+                objEntidad.setAutor(rs.getString("autor"));
+                objEntidad.setEditorial(rs.getString("editorial"));
+                objEntidad.setNumpag(rs.getInt("numpag"));
+                objEntidad.setYear(rs.getString("year"));
+                objEntidad.setCategoria(rs.getString("categoria"));
+                objEntidad.setIdioma(rs.getString("idioma"));
+                objEntidad.setFormato(rs.getString("formato"));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (Exception ex) {
+                
+            }
+        }
+        
+        return objEntidad;
     }
 }
