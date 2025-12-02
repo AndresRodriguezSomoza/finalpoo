@@ -8,6 +8,22 @@
         <servlet-name>LibroControlador</servlet-name>
         <url-pattern>/LibroControlador</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CdControlador</servlet-name>
+        <servlet-class>controlador.CdControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CdControlador</servlet-name>
+        <url-pattern>/CdControlador</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ObraControlador</servlet-name>
+        <servlet-class>controlador.ObraControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ObraControlador</servlet-name>
+        <url-pattern>/ObraControlador</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

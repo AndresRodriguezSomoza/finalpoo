@@ -13,6 +13,51 @@
         <title>Libros</title>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-video"></i> Videoteca Virtual UDB
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-book"></i> Materiales
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="LibroControlador?accion=listar">
+                                        <i class="fas fa-book"></i> Libros
+                                    </a></li>
+                                <li><a class="dropdown-item" href="CdControlador?accion=listar">
+                                        <i class="fas fa-compact-disc"></i> CDs
+                                    </a></li>
+                                <li><a class="dropdown-item" href="TesisControlador?accion=listar">
+                                        <i class="fas fa-graduation-cap"></i> Tesis
+                                    </a></li>
+                                <li><a class="dropdown-item" href="RevistaControlador?accion=listar">
+                                        <i class="fas fa-newspaper"></i> Revistas
+                                    </a></li>
+                                <li><a class="dropdown-item" href="ObraControlador?accion=listar">
+                                        <i class="fas fa-palette"></i> Obras
+                                    </a></li>
+                                <li><a class="dropdown-item" href="PatentesControlador?accion=listar">
+                                        <i class="fas fa-certificate"></i> Patentes
+                                    </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
         <div class="container mt-3">
             <div class="card">
                 <div class="card-body">
@@ -81,5 +126,8 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous"></script>
     </body>
 </html>
