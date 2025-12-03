@@ -10,13 +10,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Libros</title>
+        <title>Libros - Videoteca Virtual</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <i class="fas fa-video"></i> Videoteca Virtual UDB
+                    Videoteca Virtual UDB
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                                 <i class="fas fa-book"></i> Materiales
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="LibroControlador?accion=listar">
+                                <li><a class="dropdown-item active" href="LibroControlador?accion=listar">
                                         <i class="fas fa-book"></i> Libros
                                     </a></li>
                                 <li><a class="dropdown-item" href="CdControlador?accion=listar">
@@ -70,59 +70,61 @@
 
                     <jsp:include page="../components/Mensaje.jsp" />
 
-                    <table class="table table-bordered table-striped mt-2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Codigo</th>
-                                <th>Disponibles</th>
-                                <th>ISBN</th>
-                                <th>Titulo</th>
-                                <th>Autor</th>
-                                <th>Editorial</th>
-                                <th>Num. de paginas</th>
-                                <th>Publicado</th>
-                                <th>Categoria</th>
-                                <th>Idioma</th>
-                                <th>Formato</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${libros}" var="item">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td>${item.id}</td>
-                                    <td>${item.cdidentificacion}</td>
-                                    <td>${item.stock}</td>
-                                    <td>${item.isbn}</td>
-                                    <td>${item.titulo}</td>
-                                    <td>${item.autor}</td>
-                                    <td>${item.editorial}</td>
-                                    <td>${item.numpag}</td>
-                                    <td>${item.year}</td>
-                                    <td>${item.categoria}</td>
-                                    <td>${item.idioma}</td>
-                                    <td>${item.formato}</td>
-                                    <td>
-                                        <a href="LibroControlador?accion=editar&id=${item.id}" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="LibroControlador?accion=eliminar&id=${item.id}" 
-                                           onclick="return confirm('Estas seguro que desea eliminar el empleado con id ${item.id}')"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Codigo</th>
+                                    <th>Disponibles</th>
+                                    <th>ISBN</th>
+                                    <th>Titulo</th>
+                                    <th>Autor</th>
+                                    <th>Editorial</th>
+                                    <th>Num. de paginas</th>
+                                    <th>Publicado</th>
+                                    <th>Categoria</th>
+                                    <th>Idioma</th>
+                                    <th>Formato</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </c:forEach>
-                            <c:if test="${libros.size() == 0}">
-                                <tr>
-                                    <td colspan="12">Tabla vacia</td>
-                                </tr>
-                            </c:if>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${libros}" var="item">
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.cdidentificacion}</td>
+                                        <td>${item.stock}</td>
+                                        <td>${item.isbn}</td>
+                                        <td>${item.titulo}</td>
+                                        <td>${item.autor}</td>
+                                        <td>${item.editorial}</td>
+                                        <td>${item.numpag}</td>
+                                        <td>${item.year}</td>
+                                        <td>${item.categoria}</td>
+                                        <td>${item.idioma}</td>
+                                        <td>${item.formato}</td>
+                                        <td>
+                                            <a href="LibroControlador?accion=editar&id=${item.id}" 
+                                               class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="LibroControlador?accion=eliminar&id=${item.id}" 
+                                               onclick="return confirm('Estas seguro que desea eliminar el empleado con id ${item.id}')"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${libros.size() == 0}">
+                                    <tr>
+                                        <td colspan="12">Tabla vacia</td>
+                                    </tr>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

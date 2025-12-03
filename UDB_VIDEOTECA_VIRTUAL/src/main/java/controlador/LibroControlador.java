@@ -1,8 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

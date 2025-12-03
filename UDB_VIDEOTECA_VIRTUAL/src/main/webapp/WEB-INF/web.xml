@@ -24,6 +24,31 @@
         <servlet-name>ObraControlador</servlet-name>
         <url-pattern>/ObraControlador</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PatentesControlador</servlet-name>
+        <servlet-class>controlador.PatentesControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PatentesControlador</servlet-name>
+        <url-pattern>/PatentesControlador</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RevistaControlador</servlet-name>
+        <servlet-class>controlador.RevistaControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RevistaControlador</servlet-name>
+        <url-pattern>/RevistaControlador</url-pattern>
+    </servlet-mapping>
+    <!-- Controlador para Tesis -->
+    <servlet>
+        <servlet-name>TesisControlador</servlet-name>
+        <servlet-class>controlador.TesisControlador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TesisControlador</servlet-name>
+        <url-pattern>/TesisControlador</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

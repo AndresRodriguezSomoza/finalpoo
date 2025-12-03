@@ -1,17 +1,140 @@
-<%-- 
-    Document   : crud_patentes
-    Created on : 30 nov 2025, 10:33:28 p. m.
-    Author     : Andres
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+        <title>Patentes - Videoteca Virtual</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    Videoteca Virtual UDB
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" 
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-book"></i> Materiales
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="LibroControlador?accion=listar">
+                                    <i class="fas fa-book"></i> Libros
+                                </a></li>
+                                <li><a class="dropdown-item" href="CdControlador?accion=listar">
+                                    <i class="fas fa-compact-disc"></i> CDs
+                                </a></li>
+                                <li><a class="dropdown-item" href="TesisControlador?accion=listar">
+                                    <i class="fas fa-graduation-cap"></i> Tesis
+                                </a></li>
+                                <li><a class="dropdown-item" href="RevistaControlador?accion=listar">
+                                    <i class="fas fa-newspaper"></i> Revistas
+                                </a></li>
+                                <li><a class="dropdown-item" href="ObraControlador?accion=listar">
+                                    <i class="fas fa-palette"></i> Obras
+                                </a></li>
+                                <li><a class="dropdown-item active" href="PatentesControlador?accion=listar">
+                                    <i class="fas fa-certificate"></i> Patentes
+                                </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Patentes</h3>
+                    <hr />
+
+                    <a href="PatentesControlador?accion=nuevapatente" class="btn btn-success btn-sm">
+                        <i class="fa fa-plus-circle"></i> Nueva Patente
+                    </a>
+
+                    <jsp:include page="../components/Mensaje.jsp" />
+
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Código</th>
+                                    <th>Título</th>
+                                    <th>Inventor</th>
+                                    <th>Titular</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Fecha Vencimiento</th>
+                                    <th>País</th>
+                                    <th>N° Patente</th>
+                                    <th>Estado</th>
+                                    <th>Extensión Regional</th>
+                                    <th>Campo Tecnológico</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${patentes}" var="item">
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.cdidentificacion}</td>
+                                        <td>${item.titulo}</td>
+                                        <td>${item.inventor}</td>
+                                        <td>${item.titular}</td>
+                                        <td>${item.fecha_registro}</td>
+                                        <td>${item.fecha_vencimiento}</td>
+                                        <td>${item.pais}</td>
+                                        <td>${item.patente}</td>
+                                        <td>
+                                            <span class="badge ${item.estado == 'Activa' ? 'bg-success' : item.estado == 'Vencida' ? 'bg-danger' : 'bg-warning'}">
+                                                ${item.estado}
+                                            </span>
+                                        </td>
+                                        <td>${item.extension_regional}</td>
+                                        <td>${item.campo_tecnologico}</td>
+                                        <td>
+                                            <a href="PatentesControlador?accion=editar&id=${item.id}" 
+                                               class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="PatentesControlador?accion=eliminar&id=${item.id}" 
+                                               onclick="return confirm('¿Estás seguro que deseas eliminar la patente con id ${item.id}?')"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty patentes or patentes.size() == 0}">
+                                    <tr>
+                                        <td colspan="13">No hay patentes registradas</td>
+                                    </tr>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

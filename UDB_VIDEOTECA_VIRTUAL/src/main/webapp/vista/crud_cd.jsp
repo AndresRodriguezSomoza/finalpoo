@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <i class="fas fa-video"></i> Videoteca Virtual UDB
+                    Videoteca Virtual UDB
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
                                 <li><a class="dropdown-item" href="LibroControlador?accion=listar">
                                         <i class="fas fa-book"></i> Libros
                                     </a></li>
-                                <li><a class="dropdown-item" href="CdControlador?accion=listar">
+                                <li><a class="dropdown-item active" href="CdControlador?accion=listar">
                                         <i class="fas fa-compact-disc"></i> CDs
                                     </a></li>
                                 <li><a class="dropdown-item" href="TesisControlador?accion=listar">
@@ -61,7 +61,7 @@
         <div class="container mt-3">
             <div class="card">
                 <div class="card-body">
-                    <h3>CDs - Videoteca Virtual</h3>
+                    <h3>CD</h3>
                     <hr />
 
                     <a href="CdControlador?accion=nuevocd" class="btn btn-success btn-sm">
@@ -70,59 +70,61 @@
 
                     <jsp:include page="../components/Mensaje.jsp" />
 
-                    <table class="table table-bordered table-striped mt-2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Código</th>
-                                <th>Disponibles</th>
-                                <th>Título</th>
-                                <th>Artista</th>
-                                <th>Productor</th>
-                                <th>Compositor</th>
-                                <th>Discografía</th>
-                                <th>Año</th>
-                                <th>Género</th>
-                                <th>Idioma</th>
-                                <th>País</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${cds}" var="item">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td>${item.id}</td>
-                                    <td>${item.cdidentificacion}</td>
-                                    <td>${item.stock}</td>
-                                    <td>${item.titulo}</td>
-                                    <td>${item.artista}</td>
-                                    <td>${item.productor}</td>
-                                    <td>${item.compositor}</td>
-                                    <td>${item.discografia}</td>
-                                    <td>${item.year}</td>
-                                    <td>${item.genero}</td>
-                                    <td>${item.idioma}</td>
-                                    <td>${item.pais}</td>
-                                    <td>
-                                        <a href="CdControlador?accion=editar&id=${item.id}" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="CdControlador?accion=eliminar&id=${item.id}" 
-                                           onclick="return confirm('¿Estás seguro que deseas eliminar el CD con id ${item.id}?')"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Código</th>
+                                    <th>Disponibles</th>
+                                    <th>Título</th>
+                                    <th>Artista</th>
+                                    <th>Productor</th>
+                                    <th>Compositor</th>
+                                    <th>Discografía</th>
+                                    <th>Año</th>
+                                    <th>Género</th>
+                                    <th>Idioma</th>
+                                    <th>País</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </c:forEach>
-                            <c:if test="${empty cds or cds.size() == 0}">
-                                <tr>
-                                    <td colspan="13">No hay CDs registrados</td>
-                                </tr>
-                            </c:if>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${cds}" var="item">
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.cdidentificacion}</td>
+                                        <td>${item.stock}</td>
+                                        <td>${item.titulo}</td>
+                                        <td>${item.artista}</td>
+                                        <td>${item.productor}</td>
+                                        <td>${item.compositor}</td>
+                                        <td>${item.discografia}</td>
+                                        <td>${item.year}</td>
+                                        <td>${item.genero}</td>
+                                        <td>${item.idioma}</td>
+                                        <td>${item.pais}</td>
+                                        <td>
+                                            <a href="CdControlador?accion=editar&id=${item.id}" 
+                                               class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="CdControlador?accion=eliminar&id=${item.id}" 
+                                               onclick="return confirm('¿Estás seguro que deseas eliminar el CD con id ${item.id}?')"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty cds or cds.size() == 0}">
+                                    <tr>
+                                        <td colspan="13">No hay CDs registrados</td>
+                                    </tr>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

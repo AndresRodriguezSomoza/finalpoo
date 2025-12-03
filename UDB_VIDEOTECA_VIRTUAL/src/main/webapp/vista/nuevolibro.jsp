@@ -21,71 +21,82 @@
             </div>
         </nav>
         <div class="container mt-2">
-            <div>
-                <div class="card-body">
-                    <form action="LibroControlador" method="post" accept-charset="UTF-8">
-                        <h3>${empty libros.id ? "Nuevo": "Editar" } Libro</h3>
-                        <hr />
-                        <div class="mb-3">
-                            <label>Disponibilidad:</label>
-                            <input value="${libros.stock}" name="stock" type="text" class="form-control" required="">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="LibroControlador" method="post" accept-charset="UTF-8">
+                                <h3>${empty libros.id ? "Nuevo": "Editar" } Libro</h3>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label>Disponibilidad:</label>
+                                            <input value="${libros.stock}" name="stock" type="text" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>ISBN:</label>
+                                            <input value="${libros.isbn}" name="isbn" type="text" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Titulo:</label>
+                                            <input value="${libros.titulo}" name="titulo" type="text" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Autor:</label>
+                                            <input value="${libros.autor}" name="autor" type="text" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Editorial:</label>
+                                            <input value="${libros.editorial}" name="editorial" type="text" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Num. de paginas:</label>
+                                            <input value="${libros.numpag}" name="numpag" type="text" class="form-control" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label>Publicacion:</label>
+                                            <input value="${libros.year}" name="year" type="date" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Categoria:</label>
+                                            <input value="${libros.categoria}" name="categoria" type="text" class="form-control" required="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Idioma:</label>
+                                            <select name="idioma" class="form-control" required>
+                                                <option value="">--Seleccione una opcion--</option>
+                                                <option value="Español" ${libros.idioma == 'Español' ? 'selected' : ''}>Español</option>
+                                                <option value="Ingles" ${libros.idioma == 'Ingles' ? 'selected' : ''}>Ingles</option>
+                                                <option value="Frances" ${libros.idioma == 'Frances' ? 'selected' : ''}>Frances</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Formato:</label>
+                                            <select name="formato" class="form-control" required>
+                                                <option value="">--Seleccione una opcion--</option>
+                                                <option value="Tapa Blanda" ${libros.formato == 'Tapa Blanda' ? 'selected' : ''}>Tapa Blanda</option>
+                                                <option value="Tapa Dura" ${libros.formato == 'Tapa Dura' ? 'selected' : ''}>Tapa Dura</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" name="id" value="${libros.id}">
+                                        <input type="hidden" name="accion" value="guardar">
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fa fa-save"></i> Guardar
+                                        </button>
+                                        <a href="LibroControlador?accion=listar" class="btn btn-dark btn-sm">
+                                            <i class="fa fa-arrow-left"></i> Volver atrás
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="mb-3">
-                            <label>ISBN:</label>
-                            <input value="${libros.isbn}" name="isbn" type="text" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Titulo:</label>
-                            <input value="${libros.titulo}" name="titulo" type="text" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Autor:</label>
-                            <input value="${libros.autor}" name="autor" type="text" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Editorial:</label>
-                            <input value="${libros.editorial}" name="editorial" type="text" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Num. de paginas:</label>
-                            <input value="${libros.numpag}" name="numpag" type="text" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Publicacion:</label>
-                            <input value="${libros.year}" name="year" type="date" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Categoria:</label>
-                            <input value="${libros.categoria}" name="categoria" type="text" class="form-control" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label>Idioma:</label>
-                            <select name="idioma" class="form-control" required>
-                                <option value="">--Seleccione una opcion--</option>
-                                <option value="Español" ${libros.idioma == 'Español' ? 'selected' : ''}>Español</option>
-                                <option value="Ingles" ${libros.idioma == 'Ingles' ? 'selected' : ''}>Ingles</option>
-                                <option value="Frances" ${libros.idioma == 'Frances' ? 'selected' : ''}>Frances</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label>Formato:</label>
-                            <select name="formato" class="form-control" required>
-                                <option value="">--Seleccione una opcion--</option>
-                                <option value="Tapa Blanda" ${libros.formato == 'Tapa Blanda' ? 'selected' : ''}>Tapa Blanda</option>
-                                <option value="Tapa Dura" ${libros.formato == 'Tapa Dura' ? 'selected' : ''}>Tapa Dura</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <input type="hidden" name="id" value="${libros.id}">
-                            <input type="hidden" name="accion" value="guardar">
-                            <button class="btn btn-primary btn-sm">
-                                <i class="fa fa-save"></i> Guardar
-                            </button>
-                            <a href="LibroControlador?accion=listar" class="btn btn-dark btn-sm">
-                                <i class="fa fa-arrow-left"></i> Volver atrás
-                            </a>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

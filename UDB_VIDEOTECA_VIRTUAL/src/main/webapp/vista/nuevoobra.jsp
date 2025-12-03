@@ -27,9 +27,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="ObraControlador" method="post" accept-charset="UTF-8">
-                                <h3 class="card-title">
-                                    <i class="fas fa-palette"></i> ${empty obras.id ? "Nueva" : "Editar"} Obra Literaria
-                                </h3>
+                                <h3>${empty obras ? "Nueva" : (obras.id == 0 ? "Nueva" : "Editar")} Obra</h3>
                                 <hr />
                                 
                                 <div class="row">

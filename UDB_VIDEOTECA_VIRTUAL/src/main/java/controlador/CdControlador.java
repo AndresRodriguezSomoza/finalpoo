@@ -146,7 +146,8 @@ public class CdControlador extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        request.setAttribute("cds", new EntidadCd());
+        // CAMBIO AQUÍ: Usar "cd" en lugar de "cds" (igual que en LibroControlador)
+        request.setAttribute("cd", new EntidadCd());
         request.getRequestDispatcher(pagNuevo).forward(request, response);
     }
 

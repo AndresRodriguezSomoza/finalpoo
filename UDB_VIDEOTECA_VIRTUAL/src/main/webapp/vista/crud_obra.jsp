@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <i class="fas fa-video"></i> Videoteca Virtual UDB
+                    Videoteca Virtual UDB
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -31,26 +31,31 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="LibroControlador?accion=listar">
-                                    <i class="fas fa-book"></i> Libros
-                                </a></li>
+                                        <i class="fas fa-book"></i> Libros
+                                    </a></li>
                                 <li><a class="dropdown-item" href="CdControlador?accion=listar">
-                                    <i class="fas fa-compact-disc"></i> CDs
-                                </a></li>
+                                        <i class="fas fa-compact-disc"></i> CDs
+                                    </a></li>
                                 <li><a class="dropdown-item" href="TesisControlador?accion=listar">
-                                    <i class="fas fa-graduation-cap"></i> Tesis
-                                </a></li>
+                                        <i class="fas fa-graduation-cap"></i> Tesis
+                                    </a></li>
                                 <li><a class="dropdown-item" href="RevistaControlador?accion=listar">
-                                    <i class="fas fa-newspaper"></i> Revistas
-                                </a></li>
+                                        <i class="fas fa-newspaper"></i> Revistas
+                                    </a></li>
                                 <li><a class="dropdown-item active" href="ObraControlador?accion=listar">
-                                    <i class="fas fa-palette"></i> Obras
-                                </a></li>
+                                        <i class="fas fa-palette"></i> Obras
+                                    </a></li>
                                 <li><a class="dropdown-item" href="PatentesControlador?accion=listar">
-                                    <i class="fas fa-certificate"></i> Patentes
-                                </a></li>
+                                        <i class="fas fa-certificate"></i> Patentes
+                                    </a></li>
                             </ul>
                         </li>
                     </ul>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -59,7 +64,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h3><i class="fas fa-palette"></i> Obras Literarias</h3>
+                    <h3>Obras</h3>
                     <hr />
 
                     <a href="ObraControlador?accion=nuevaobra" class="btn btn-success btn-sm">
@@ -68,59 +73,61 @@
 
                     <jsp:include page="../components/Mensaje.jsp" />
 
-                    <table class="table table-bordered table-striped mt-2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Código</th>
-                                <th>ISBN</th>
-                                <th>Disponibles</th>
-                                <th>Título</th>
-                                <th>Autor</th>
-                                <th>Editorial</th>
-                                <th>Año</th>
-                                <th>Género</th>
-                                <th>Páginas</th>
-                                <th>Subgénero</th>
-                                <th>Tema</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${obras}" var="item">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td>${item.id}</td>
-                                    <td>${item.cdidentificacion}</td>
-                                    <td>${item.isbn}</td>
-                                    <td>${item.stock}</td>
-                                    <td>${item.titulo}</td>
-                                    <td>${item.autor}</td>
-                                    <td>${item.editorial}</td>
-                                    <td>${item.year}</td>
-                                    <td>${item.genero}</td>
-                                    <td>${item.numpag}</td>
-                                    <td>${item.subgenero}</td>
-                                    <td>${item.tema}</td>
-                                    <td>
-                                        <a href="ObraControlador?accion=editar&id=${item.id}" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="ObraControlador?accion=eliminar&id=${item.id}" 
-                                           onclick="return confirm('¿Estás seguro que deseas eliminar la obra con id ${item.id}?')"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Código</th>
+                                    <th>ISBN</th>
+                                    <th>Disponibles</th>
+                                    <th>Título</th>
+                                    <th>Autor</th>
+                                    <th>Editorial</th>
+                                    <th>Año</th>
+                                    <th>Género</th>
+                                    <th>Páginas</th>
+                                    <th>Subgénero</th>
+                                    <th>Tema</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </c:forEach>
-                            <c:if test="${empty obras or obras.size() == 0}">
-                                <tr>
-                                    <td colspan="13">No hay obras registradas</td>
-                                </tr>
-                            </c:if>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${obras}" var="item">
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.cdidentificacion}</td>
+                                        <td>${item.isbn}</td>
+                                        <td>${item.stock}</td>
+                                        <td>${item.titulo}</td>
+                                        <td>${item.autor}</td>
+                                        <td>${item.editorial}</td>
+                                        <td>${item.year}</td>
+                                        <td>${item.genero}</td>
+                                        <td>${item.numpag}</td>
+                                        <td>${item.subgenero}</td>
+                                        <td>${item.tema}</td>
+                                        <td>
+                                            <a href="ObraControlador?accion=editar&id=${item.id}" 
+                                               class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="ObraControlador?accion=eliminar&id=${item.id}" 
+                                               onclick="return confirm('¿Estás seguro que deseas eliminar la obra con id ${item.id}?')"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty obras or obras.size() == 0}">
+                                    <tr>
+                                        <td colspan="13">No hay obras registradas</td>
+                                    </tr>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
