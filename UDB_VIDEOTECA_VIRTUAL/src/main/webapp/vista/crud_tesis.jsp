@@ -31,23 +31,23 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="LibroControlador?accion=listar">
-                                    <i class="fas fa-book"></i> Libros
-                                </a></li>
+                                        <i class="fas fa-book"></i> Libros
+                                    </a></li>
                                 <li><a class="dropdown-item" href="CdControlador?accion=listar">
-                                    <i class="fas fa-compact-disc"></i> CDs
-                                </a></li>
+                                        <i class="fas fa-compact-disc"></i> CDs
+                                    </a></li>
                                 <li><a class="dropdown-item active" href="TesisControlador?accion=listar">
-                                    <i class="fas fa-graduation-cap"></i> Tesis
-                                </a></li>
+                                        <i class="fas fa-graduation-cap"></i> Tesis
+                                    </a></li>
                                 <li><a class="dropdown-item" href="RevistaControlador?accion=listar">
-                                    <i class="fas fa-newspaper"></i> Revistas
-                                </a></li>
+                                        <i class="fas fa-newspaper"></i> Revistas
+                                    </a></li>
                                 <li><a class="dropdown-item" href="ObraControlador?accion=listar">
-                                    <i class="fas fa-palette"></i> Obras
-                                </a></li>
+                                        <i class="fas fa-palette"></i> Obras
+                                    </a></li>
                                 <li><a class="dropdown-item" href="PatentesControlador?accion=listar">
-                                    <i class="fas fa-certificate"></i> Patentes
-                                </a></li>
+                                        <i class="fas fa-certificate"></i> Patentes
+                                    </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -72,67 +72,69 @@
 
                     <jsp:include page="../components/Mensaje.jsp" />
 
-                    <table class="table table-bordered table-striped mt-2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Código</th>
-                                <th>ISBN</th>
-                                <th>Título</th>
-                                <th>Autor</th>
-                                <th>Director</th>
-                                <th>Institución</th>
-                                <th>Año</th>
-                                <th>Grado</th>
-                                <th>Páginas</th>
-                                <th>Calificación</th>
-                                <th>Idioma</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${tesis}" var="item">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-striped mt-2">
+                            <thead>
                                 <tr>
-                                    <td>${item.id}</td>
-                                    <td>${item.cdidentificacion}</td>
-                                    <td>${item.isbn}</td>
-                                    <td>${item.titulo}</td>
-                                    <td>${item.autor}</td>
-                                    <td>${item.director}</td>
-                                    <td>${item.institucion}</td>
-                                    <td>${item.year}</td>
-                                    <td>${item.gradoacademico}</td>
-                                    <td>${item.numpag}</td>
-                                    <td>
-                                        <span class="badge bg-${item.calificacion == 'Aprobado' ? 'success' : item.calificacion == 'Sobresaliente' ? 'info' : 'warning'}">
-                                            ${item.calificacion}
-                                        </span>
-                                    </td>
-                                    <td>${item.idioma}</td>
-                                    <td>
-                                        <a href="TesisControlador?accion=editar&id=${item.id}" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="TesisControlador?accion=eliminar&id=${item.id}" 
-                                           onclick="return confirm('¿Estás seguro que deseas eliminar la tesis con id ${item.id}?')"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Código</th>
+                                    <th>ISBN</th>
+                                    <th>Título</th>
+                                    <th>Autor</th>
+                                    <th>Director</th>
+                                    <th>Institución</th>
+                                    <th>Año</th>
+                                    <th>Grado</th>
+                                    <th>Páginas</th>
+                                    <th>Calificación</th>
+                                    <th>Idioma</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </c:forEach>
-                            <c:if test="${empty tesis or tesis.size() == 0}">
-                                <tr>
-                                    <td colspan="13">No hay tesis registradas</td>
-                                </tr>
-                            </c:if>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${tesis}" var="item">
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.cdidentificacion}</td>
+                                        <td>${item.isbn}</td>
+                                        <td>${item.titulo}</td>
+                                        <td>${item.autor}</td>
+                                        <td>${item.director}</td>
+                                        <td>${item.institucion}</td>
+                                        <td>${item.year}</td>
+                                        <td>${item.gradoacademico}</td>
+                                        <td>${item.numpag}</td>
+                                        <td>
+                                            <span class="badge bg-${item.calificacion == 'Aprobado' ? 'success' : item.calificacion == 'Sobresaliente' ? 'info' : 'warning'}">
+                                                ${item.calificacion}
+                                            </span>
+                                        </td>
+                                        <td>${item.idioma}</td>
+                                        <td>
+                                            <a href="TesisControlador?accion=editar&id=${item.id}" 
+                                               class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="TesisControlador?accion=eliminar&id=${item.id}" 
+                                               onclick="return confirm('¿Estás seguro que deseas eliminar la tesis con id ${item.id}?')"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty tesis or tesis.size() == 0}">
+                                    <tr>
+                                        <td colspan="13">No hay tesis registradas</td>
+                                    </tr>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-                    
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

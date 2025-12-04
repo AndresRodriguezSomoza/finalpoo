@@ -31,23 +31,23 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="LibroControlador?accion=listar">
-                                    <i class="fas fa-book"></i> Libros
-                                </a></li>
+                                        <i class="fas fa-book"></i> Libros
+                                    </a></li>
                                 <li><a class="dropdown-item" href="CdControlador?accion=listar">
-                                    <i class="fas fa-compact-disc"></i> CDs
-                                </a></li>
+                                        <i class="fas fa-compact-disc"></i> CDs
+                                    </a></li>
                                 <li><a class="dropdown-item" href="TesisControlador?accion=listar">
-                                    <i class="fas fa-graduation-cap"></i> Tesis
-                                </a></li>
+                                        <i class="fas fa-graduation-cap"></i> Tesis
+                                    </a></li>
                                 <li><a class="dropdown-item active" href="RevistaControlador?accion=listar">
-                                    <i class="fas fa-newspaper"></i> Revistas
-                                </a></li>
+                                        <i class="fas fa-newspaper"></i> Revistas
+                                    </a></li>
                                 <li><a class="dropdown-item" href="ObraControlador?accion=listar">
-                                    <i class="fas fa-palette"></i> Obras
-                                </a></li>
+                                        <i class="fas fa-palette"></i> Obras
+                                    </a></li>
                                 <li><a class="dropdown-item" href="PatentesControlador?accion=listar">
-                                    <i class="fas fa-certificate"></i> Patentes
-                                </a></li>
+                                        <i class="fas fa-certificate"></i> Patentes
+                                    </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -71,62 +71,63 @@
                     </a>
 
                     <jsp:include page="../components/Mensaje.jsp" />
-
-                    <table class="table table-bordered table-striped mt-2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Código</th>
-                                <th>ISSN</th>
-                                <th>Disponibles</th>
-                                <th>Título</th>
-                                <th>Editorial</th>
-                                <th>Edición</th>
-                                <th>Año</th>
-                                <th>Periodicidad</th>
-                                <th>Páginas</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${revistas}" var="item">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered table-striped mt-2">
+                            <thead>
                                 <tr>
-                                    <td>${item.id}</td>
-                                    <td>${item.cdidentificacion}</td>
-                                    <td>${item.issn}</td>
-                                    <td>${item.stock}</td>
-                                    <td>${item.titulo}</td>
-                                    <td>${item.editorial}</td>
-                                    <td>${item.edicion}</td>
-                                    <td>${item.year}</td>
-                                    <td>${item.periocidad}</td>
-                                    <td>${item.numpag}</td>
-                                    <td>
-                                        <span class="badge bg-${item.estado == 'Disponible' ? 'success' : 'warning'}">
-                                            ${item.estado}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a href="RevistaControlador?accion=editar&id=${item.id}" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="RevistaControlador?accion=eliminar&id=${item.id}" 
-                                           onclick="return confirm('¿Estás seguro que deseas eliminar la revista con id ${item.id}?')"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Código</th>
+                                    <th>ISSN</th>
+                                    <th>Disponibles</th>
+                                    <th>Título</th>
+                                    <th>Editorial</th>
+                                    <th>Edición</th>
+                                    <th>Año</th>
+                                    <th>Periodicidad</th>
+                                    <th>Páginas</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            </c:forEach>
-                            <c:if test="${empty revistas or revistas.size() == 0}">
-                                <tr>
-                                    <td colspan="12">No hay revistas registradas</td>
-                                </tr>
-                            </c:if>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${revistas}" var="item">
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.cdidentificacion}</td>
+                                        <td>${item.issn}</td>
+                                        <td>${item.stock}</td>
+                                        <td>${item.titulo}</td>
+                                        <td>${item.editorial}</td>
+                                        <td>${item.edicion}</td>
+                                        <td>${item.year}</td>
+                                        <td>${item.periocidad}</td>
+                                        <td>${item.numpag}</td>
+                                        <td>
+                                            <span class="badge bg-${item.estado == 'Disponible' ? 'success' : 'warning'}">
+                                                ${item.estado}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="RevistaControlador?accion=editar&id=${item.id}" 
+                                               class="btn btn-info btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="RevistaControlador?accion=eliminar&id=${item.id}" 
+                                               onclick="return confirm('¿Estás seguro que deseas eliminar la revista con id ${item.id}?')"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty revistas or revistas.size() == 0}">
+                                    <tr>
+                                        <td colspan="12">No hay revistas registradas</td>
+                                    </tr>
+                                </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -40,7 +40,6 @@
         <servlet-name>RevistaControlador</servlet-name>
         <url-pattern>/RevistaControlador</url-pattern>
     </servlet-mapping>
-    <!-- Controlador para Tesis -->
     <servlet>
         <servlet-name>TesisControlador</servlet-name>
         <servlet-class>controlador.TesisControlador</servlet-class>
@@ -50,8 +49,6 @@
         <url-pattern>/TesisControlador</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>
