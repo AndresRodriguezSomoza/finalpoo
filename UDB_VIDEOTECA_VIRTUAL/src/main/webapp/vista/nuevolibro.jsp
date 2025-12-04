@@ -80,6 +80,9 @@
                                                 <option value="">--Seleccione una opcion--</option>
                                                 <option value="Tapa Blanda" ${libros.formato == 'Tapa Blanda' ? 'selected' : ''}>Tapa Blanda</option>
                                                 <option value="Tapa Dura" ${libros.formato == 'Tapa Dura' ? 'selected' : ''}>Tapa Dura</option>
+                                                <option value="Wire-o" ${libros.formato == 'Wire-o' ? 'selected' : ''}>Wire-o</option>
+                                                <option value="Ebook" ${libros.formato == 'Ebook' ? 'selected' : ''}>Ebook</option>
+                                                <option value="Álbum" ${libros.formato == 'Álbum' ? 'selected' : ''}>Álbum</option>
                                             </select>
                                         </div>
                                     </div>

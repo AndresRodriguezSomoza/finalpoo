@@ -85,12 +85,11 @@
                                             <label class="form-label">Extensión Regional:</label>
                                             <select name="extension_regional" class="form-control">
                                                 <option value="">--Seleccione extensión--</option>
-                                                <option value="Nacional" ${patentes.extension_regional == 'Nacional' ? 'selected' : ''}>Nacional</option>
-                                                <option value="Regional" ${patentes.extension_regional == 'Regional' ? 'selected' : ''}>Regional</option>
-                                                <option value="Internacional" ${patentes.extension_regional == 'Internacional' ? 'selected' : ''}>Internacional</option>
-                                                <option value="Centroamérica" ${patentes.extension_regional == 'Centroamérica' ? 'selected' : ''}>Centroamérica</option>
-                                                <option value="América" ${patentes.extension_regional == 'América' ? 'selected' : ''}>América</option>
-                                                <option value="Global" ${patentes.extension_regional == 'Global' ? 'selected' : ''}>Global</option>
+                                                <option value="PCT" ${patentes.extension_regional == 'Nacional' ? 'selected' : ''}>PCT</option>
+                                                <option value="EAPO" ${patentes.extension_regional == 'Regional' ? 'selected' : ''}>EAPO</option>
+                                                <option value="EPO" ${patentes.extension_regional == 'Internacional' ? 'selected' : ''}>EPO</option>
+                                                <option value="OAPI" ${patentes.extension_regional == 'Centroamérica' ? 'selected' : ''}>OAPI</option>
+                                                <option value="ARIPO" ${patentes.extension_regional == 'América' ? 'selected' : ''}>ARIPO</option>
                                             </select>
                                         </div>
                                         
